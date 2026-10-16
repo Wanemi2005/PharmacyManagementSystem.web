@@ -8,6 +8,6 @@ namespace PharmacyManagementSystem.Models
     {
         public int Id { get; set; }
         public string Diagnosis { get; set; }
-        public 
+        
     }
 }
