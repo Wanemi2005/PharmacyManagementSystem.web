@@ -18,6 +18,8 @@ namespace PharmacyManagementSystem.web.Data
 
         public DbSet<Medicine> Medicines { get; set; }
 
+        public DbSet<MedicineCategory> MedicineCategories { get; set; }
+
         public DbSet<MedicineBatch> MedicineBatches { get; set; }
 
         public DbSet<Prescription> Prescriptions { get; set; }

@@ -92,7 +92,17 @@ namespace PharmacyManagementSystem.web.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Barcode")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GenericName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -103,13 +113,25 @@ namespace PharmacyManagementSystem.web.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("numeric");
+
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("integer");
 
                     b.Property<int>("ReorderLevel")
                         .HasColumnType("integer");
 
+                    b.Property<string>("RequiredPrescription")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("SellingPrice")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Medicines");
                 });
@@ -143,6 +165,27 @@ namespace PharmacyManagementSystem.web.Migrations
                     b.HasIndex("MedicineId");
 
                     b.ToTable("MedicineBatches");
+                });
+
+            modelBuilder.Entity("PharmacyManagementSystem.web.Models.MedicineCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedicineCategories");
                 });
 
             modelBuilder.Entity("PharmacyManagementSystem.web.Models.Prescription", b =>
@@ -202,6 +245,17 @@ namespace PharmacyManagementSystem.web.Migrations
                     b.Navigation("Account");
                 });
 
+            modelBuilder.Entity("PharmacyManagementSystem.web.Models.Medicine", b =>
+                {
+                    b.HasOne("PharmacyManagementSystem.web.Models.MedicineCategory", "Category")
+                        .WithMany("Medicines")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("PharmacyManagementSystem.web.Models.MedicineBatch", b =>
                 {
                     b.HasOne("PharmacyManagementSystem.web.Models.Medicine", "Medicine")
@@ -211,6 +265,11 @@ namespace PharmacyManagementSystem.web.Migrations
                         .IsRequired();
 
                     b.Navigation("Medicine");
+                });
+
+            modelBuilder.Entity("PharmacyManagementSystem.web.Models.MedicineCategory", b =>
+                {
+                    b.Navigation("Medicines");
                 });
 #pragma warning restore 612, 618
         }

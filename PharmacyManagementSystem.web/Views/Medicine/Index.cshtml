@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PharmacyManagementSystem.web.Models.Medicine>
+
+<h1>Medicines</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var medicine in Model)
+        {
+            <tr>
+                <td>@medicine.Id</td>
+                <td>@medicine.Name</td>
+                <td>@medicine.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+``
