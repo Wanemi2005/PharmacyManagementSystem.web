@@ -103,7 +103,7 @@ namespace PharmacyManagementSystem.web.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("SellingPrice")
                         .HasColumnType("numeric");
 
                     b.Property<int>("QuantityInStock")

@@ -36,7 +36,7 @@ namespace PharmacyManagementSystem.web.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                   SellingPrice = table.Column<decimal>(type: "numeric", nullable: false),
                     QuantityInStock = table.Column<int>(type: "integer", nullable: false),
                     ReorderLevel = table.Column<int>(type: "integer", nullable: false)
                 },

@@ -92,8 +92,9 @@ namespace PharmacyManagementSystem.web.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Barcode")
-                        .HasColumnType("integer");
+                    b.Property<string>("Barcode")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
@@ -110,9 +111,6 @@ namespace PharmacyManagementSystem.web.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
                     b.Property<decimal>("PurchasePrice")
                         .HasColumnType("numeric");
 
@@ -122,9 +120,8 @@ namespace PharmacyManagementSystem.web.Migrations
                     b.Property<int>("ReorderLevel")
                         .HasColumnType("integer");
 
-                    b.Property<string>("RequiredPrescription")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<bool>("RequiresPrescription")
+                        .HasColumnType("boolean");
 
                     b.Property<decimal>("SellingPrice")
                         .HasColumnType("numeric");

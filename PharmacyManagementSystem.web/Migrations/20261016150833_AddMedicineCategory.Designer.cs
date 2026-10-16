@@ -113,9 +113,6 @@ namespace PharmacyManagementSystem.web.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
                     b.Property<decimal>("PurchasePrice")
                         .HasColumnType("numeric");
 
