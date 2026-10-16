@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PharmacyManagementSystem.Models
+namespace PharmacyManagementSystem.web.Models
 {
     internal class PurchaseItem
     {
