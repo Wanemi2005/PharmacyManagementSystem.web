@@ -1,23 +1,26 @@
-﻿using PharmacyManagementSystem.Models;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-User admin = new User
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
 {
-    Id = 1,
-    Username = "admin",
-    EmailAddress = "admin@pharmacy.com",
-    Password = "password123",
-    Role = "Admin"
-};
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
-User pharmacist = new User
-{
-    Id = 2,
-    Username = "grace",
-    EmailAddress = "grace@pharmacy.com",
-    Password = "password123",
-    Role = "Pharmacist"
-};
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
-Console.WriteLine(admin.Role);
+app.UseRouting();
 
-Console.WriteLine(pharmacist.Role);
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
